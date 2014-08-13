@@ -1,7 +1,7 @@
 <?php
 
-use Acme\Jobs\PostJobListingCommand;
 use Acme\Commanding\CommandBus;
+use Acme\Jobs\PostJobListingCommand;
 
 class JobsController extends \BaseController {
 
