@@ -1,6 +1,16 @@
 <?php
 
+use Acme\Jobs\PostJobListingCommand;
+use Acme\Commanding\CommandBus;
+
 class JobsController extends \BaseController {
+
+	protected $commandBus;
+
+	public function __construct(CommandBus $commandBus)
+	{
+		$this->commandBus = $commandBus;
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -16,7 +26,10 @@ class JobsController extends \BaseController {
 		// notify all listeners of a particular job tag
 		
 		$input = Input::only('title', 'description');
-		new PostJobListingCommand($input['title'],  $input['description']);
+
+		$command = new PostJobListingCommand($input['title'],  $input['description']);
+
+		$this->commandBus->execute($command);
 	}
 
 }

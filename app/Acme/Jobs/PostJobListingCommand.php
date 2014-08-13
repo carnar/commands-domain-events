@@ -1,4 +1,4 @@
-<?php namespace Acme\jobs;
+<?php namespace Acme\Jobs;
 
 class PostJobListingCommand {
 
