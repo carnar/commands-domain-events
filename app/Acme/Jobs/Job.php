@@ -17,4 +17,11 @@ class Job extends \Eloquent {
 		return $job;
 	}
 
+	public function archive()
+	{
+		$this->delete();
+
+		$this->raise(new JobWasFilled($this));
+	}
+
 } 
