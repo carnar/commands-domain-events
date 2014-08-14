@@ -1,6 +1,15 @@
 <?php
 
+use Acme\Commanding\CommandBus;
+
 class BaseController extends Controller {
+
+	protected $commandBus;
+
+	public function __construct(CommandBus $commandBus)
+	{
+		$this->commandBus = $commandBus;
+	}
 
 	/**
 	 * Setup the layout used by the controller.

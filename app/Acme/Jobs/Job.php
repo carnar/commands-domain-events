@@ -4,18 +4,17 @@ use Acme\Eventing\EventGenerator;
 
 class Job extends \Eloquent {
 
-	use EventGenerator;
+	use EventGenerator; 
 
-	public function post($title, $description)
+	protected $fillable = ['title', 'description'];
+
+	public static function post($title, $description)
 	{
-		$this->title = $title;
-		$this->description = $description;
+		$job = static::create(compact('title', 'description'));
 
-		$this->save();
+		$job->raise(new JobWasPosted($job));
 
-		$this->raise(new JobWasPosted($this));
-
-		return $this;
+		return $job;
 	}
 
 } 
