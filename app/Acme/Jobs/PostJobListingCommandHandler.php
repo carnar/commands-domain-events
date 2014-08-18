@@ -13,7 +13,7 @@ class PostJobListingCommandHandler	implements CommandHandlerInterface  {
 	}
 
 	public function handle($command)
-	{
+	{	
 		$job = Job::post($command->title, $command->description);
 
 		$this->dispatcher->dispatch($job->releaseEvents());

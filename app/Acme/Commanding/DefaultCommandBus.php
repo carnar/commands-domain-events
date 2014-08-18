@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Application;
 
-class CommandBus {
+class DefaultCommandBus implements CommandBusInterface {
 
 	protected $commandTranslator;
 
